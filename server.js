@@ -42,7 +42,6 @@ console.info(`${req.method} request received to get notes`);
     } else {
       // Convert string into JSON object
       const parsedNotes = JSON.parse(data);
-      //parsedNotes.push(newReview);
       res.json(JSON.parse(data));
     }
   });
