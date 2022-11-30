@@ -2,6 +2,8 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+// Helper method for generating unique ids
+const uuid = require('./helpers/uuid');
 
 // import application files
 // Import 'db.json' file for use
@@ -16,7 +18,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Serve up files in /public (serves up index.html by default)
+// This route is required to load of db.json entries into HTML elements on notes.html page. It does not work if this is commented out.
 app.use(express.static('public'));
+
+// Sends the index.html file when the base / path is used 
+app.get('/', (req, res) =>
+  res.sendFile(path.join(__dirname, 'public/index.html'))
+);
 
 // Sends the notes.html file when /notes path is used 
 // On click of "Get Started" button on index.html, redirect to...
@@ -29,11 +37,11 @@ app.get('/api/notes1', (req, res) => {
   res.json(dbData)
 });
 
-// GET request for reviews
+// GET request for texts
 app.get('/api/notes', (req, res) => {
 
   // Log our request to the terminal
-console.info(`${req.method} request received to get notes`);
+  console.info(`${req.method} request received to get notes`);
 
   // Obtain existing notes
   fs.readFile('./db/db.json', 'utf8', (err, data) => {
@@ -47,21 +55,57 @@ console.info(`${req.method} request received to get notes`);
   });
 });
 
-// GET route that returns any specific entry
-// app.get('/api/notes/:title', (req, res) => {
-//   // Coerce the specific search term to lowercase
-//   const requestedEntry = req.params.title.toLowerCase();
+// POST request to add a text
+app.post('/api/notes', (req, res) => {
+  // Log that a POST request was received
+  console.info(`${req.method} request received to add a text`);
 
-//   // Iterate through the terms name to check if it matches `req.params.title`
-//   for (let i = 0; i < dbData.length; i++) {
-//     if (requestedEntry === dbData[i].title.toLowerCase()) {
-//       return res.json(dbData[i]);
-//     }
-//   }
+  // Destructuring assignment for the items in req.body
+  const { title, text } = req.body;
 
-//   // Return a message if the term doesn't exist in our DB
-//   return res.json('No match found');
-// });
+  // If all the required properties are present
+  if (title && text) {
+    // Variable for the object we will save
+    const newNote = {
+      title,
+      text,
+      note_id: uuid(),
+    };
+
+    // Obtain existing texts
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+      if (err) {
+        console.error(err);
+      } else {
+        // Convert string into JSON object
+        const parsedNotes = JSON.parse(data);
+        console.log(parsedNotes)
+        // Add a new text
+        parsedNotes.push(newNote);
+
+        // Write updated texts back to the file
+        fs.writeFile(
+          './db/db.json',
+          JSON.stringify(parsedNotes, null, 4),
+          (writeErr) =>
+            writeErr
+              ? console.error(writeErr)
+              : console.info('Successfully updated texts!')
+        );
+      }
+    });
+
+    const response = {
+      status: 'success',
+      body: newNote,
+    };
+
+    console.log(response);
+    res.status(201).json(response);
+  } else {
+    res.status(500).json('Error in posting text');
+  }
+});
 
 // App listens on this port.
 app.listen(PORT, () =>
