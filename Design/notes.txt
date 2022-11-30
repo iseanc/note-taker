@@ -18,3 +18,7 @@
     - display the note in the right-hand column
 - ON CLICKING THE WRITE ICON (in nav bar at top of page)
     - Load a new blank note in the right-hand column
+
+- ON COMPLETION OF APP
+    - Deploy app to Heroku.
+    - Test all functionality.
