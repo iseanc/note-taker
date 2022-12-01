@@ -2,14 +2,15 @@
 
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
-
-- What was your motivation?  A browser-based note-taker application that can accessed from a web browser on any device with internet access.
-
 This project is built intended to explore web-server software and middleware components, client-server interaction (CRUD operations) through an internet browser, and publishing and accessing applications hosted on a web-hosting service (Heroku, etc).
 
+LESSONS LEARNED:  
+Most of the code for this project was provided, including the HTML, CSS, server.js, index.js, etc.; therefore, this project is predominantly an exercise in completing implementation of functionality designed, planned and partially implemented by other developers.
 
-- What did you learn?
+It has helped deepen my understanding of using Express JS as web-server middleware, and of connecting client-side functionality (esp. Javascript) to a server backend with data-persistence.
+
+Modifying existing code to meet a defined set of requirements has been a good exercise in the cycle of reviewing code, implementing small changes, testing against requirements, and iterating the process as needed to implement all required features.
+ 
 
 ## Table of Contents (Optional)
 
@@ -22,7 +23,10 @@ If your README is long, add a table of contents to make it easy for users to fin
 
 ## Installation
 
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
+- Node.js is required to run a local instance of this app.
+- Fork or download the repository to a local machine.
+- Run 'npm i' to install required Node packages.
+- To run the app on a local machine, run 'node server.js' from the root directory.  Otherwise, publish the app code to a web service supporting Node.JS/Express.JS applications.
 
 ## Usage
 

@@ -5,28 +5,13 @@
         "note_id": "9001"
     },
     {
-        "title": "Test Note 1",
-        "text": "Test Note 1 text",
-        "note_id": "9002"
+        "title": "Finish Note Taker README",
+        "text": "Need to finish the README for the Note Taker app:\n- Add Installation and Usage notes\n- Add screen shots.\n- Add TOC",
+        "note_id": "edf7"
     },
     {
-        "title": "My Note 1",
-        "text": "My Note 1 text",
-        "note_id": "9003"
-    },
-    {
-        "title": "ANote1",
-        "text": "A Note 1 text",
-        "note_id": "9004"
-    },
-    {
-        "title": "DNote1",
-        "text": "D Note 1 text",
-        "note_id": "9005"
-    },
-    {
-        "title": "My New Note",
-        "text": "My new note test",
-        "note_id": "9000"
+        "title": "Publish Note Taker to Heroku",
+        "text": "1. Look up directions for publishing to Heroku.\n2. Publish app to Heroku",
+        "note_id": "d06f"
     }
 ]
