@@ -5,13 +5,18 @@
         "note_id": "9001"
     },
     {
-        "title": "Finish Note Taker README",
-        "text": "Need to finish the README for the Note Taker app:\n- Add Installation and Usage notes\n- Add screen shots.\n- Add TOC",
-        "note_id": "edf7"
+        "title": "Add & save note",
+        "text": "Save this note.",
+        "note_id": "99af"
     },
     {
-        "title": "Publish Note Taker to Heroku",
-        "text": "1. Look up directions for publishing to Heroku.\n2. Publish app to Heroku",
-        "note_id": "d06f"
+        "title": "Add another",
+        "text": "and save",
+        "note_id": "9e8f"
+    },
+    {
+        "title": "add new after view old",
+        "text": "and save again",
+        "note_id": "273c"
     }
 ]
