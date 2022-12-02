@@ -38,6 +38,7 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 - Existing notes appear on the left side of the page at page load.
 - To add a new note, provide a title and text in the fields on the right side of the page, then click the save (disk) icon.  The new note appears at the bottom of the list on the left side of the page.
 - Click an existing note title on the left side of the page to load it into the note viewer on the right side of the page.
+- Click the delete icon (trash can) on any note in the left column to delete it.
 
 
 [Demo Video](assets/demo/NoteTaker.mp4)

@@ -1,17 +1,17 @@
 [
     {
-        "title": "add new after view old",
-        "text": "and save again",
-        "note_id": "273c"
+        "title": "A note",
+        "text": "with some note text",
+        "note_id": "4225"
     },
     {
-        "title": "Add a new note again",
-        "text": "Another note added to add another note.",
-        "note_id": "bb7c"
+        "title": "Add a new note",
+        "text": "with some note text",
+        "note_id": "a27a"
     },
     {
-        "title": "abcd",
-        "text": "abcd",
-        "note_id": "44ed"
+        "title": "Add more notes",
+        "text": "for whatever you need",
+        "note_id": "8060"
     }
 ]
