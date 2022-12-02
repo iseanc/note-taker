@@ -12,7 +12,7 @@ const dbData = require('./db/db.json');
 // define Express app object and TCP/IP port to listen on
 const app = express();
 // const PORT = 3001;
-const PORT = process.env.PORT || 3001
+const port = process.env.PORT || 3001
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
