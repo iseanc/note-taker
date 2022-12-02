@@ -107,6 +107,85 @@ app.post('/api/notes', (req, res) => {
   }
 });
 
+// TODO: WORK IN PROGRESS - DELETE request to add a text
+// app.get('/api/notes/:note_id', (req, res) => {
+
+//   // Load search term to const
+//   const noteId = req.params.note_id;
+  
+//   // Obtain matching note(s)
+//   fs.readFile('./db/db.json', 'utf8', (err, data) => {
+//     if (err) {
+//       console.error(err);
+//     } else if (noteId) {
+//       // Convert string into JSON object
+//       const parsedNotes = JSON.parse(data);
+//       const nonMatchNotes = [];
+
+//       for (let i = 0; i < parsedNotes.length; i++) {
+//         if (parsedNotes[i].note_id !== noteId) {
+//           nonMatchNotes.push(parsedNotes[i]);
+//         }
+//       }
+//       console.log(nonMatchNotes);
+//       // res.json(JSON.parse(data));
+//     }
+//   });
+
+
+// });
+
+// app.delete('/api/notes/:note_id', (req, res) => {
+//   // Log that a POST request was received
+//   console.info(`${req.method} request received to delete a note`);
+
+//   // Destructuring assignment for the items in req.body
+//   const { title, text, note_id } = req.body;
+
+//   // If all the required properties are present
+//   if (title && text && note_id) {
+//     // Variable for the object we will delete
+//     const deleteId = {
+//       title,
+//       text,
+//       note_id: uuid(),
+//     };
+
+//     // Obtain existing texts
+//     fs.readFile('./db/db.json', 'utf8', (err, data) => {
+//       if (err) {
+//         console.error(err);
+//       } else {
+//         // Convert string into JSON object
+//         const parsedNotes = JSON.parse(data);
+//         console.log(parsedNotes)
+//         // Add a new text
+//         parsedNotes.push(newNote);
+
+//         // Write updated texts back to the file
+//         fs.writeFile(
+//           './db/db.json',
+//           JSON.stringify(parsedNotes, null, 4),
+//           (writeErr) =>
+//             writeErr
+//               ? console.error(writeErr)
+//               : console.info('Successfully deleted texts!')
+//         );
+//       }
+//     });
+
+//     const response = {
+//       status: 'success',
+//       body: newNote,
+//     };
+
+//     console.log(response);
+//     res.status(201).json(response);
+//   } else {
+//     res.status(500).json('Error in deleting text');
+//   }
+// });
+
 // App listens on this port.
 app.listen(PORT, () =>
   console.log(`Note Taker app listening at http://localhost:${PORT}`)
