@@ -11,7 +11,8 @@ const dbData = require('./db/db.json');
 
 // define Express app object and TCP/IP port to listen on
 const app = express();
-const PORT = 3001;
+// const PORT = 3001;
+const PORT = process.env.PORT || 3001
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
@@ -31,11 +32,6 @@ app.get('/', (req, res) =>
 app.get('/notes', (req, res) =>
   res.sendFile(path.join(__dirname, 'public/notes.html'))
 );
-
-// Get route to get ALL db entries
-app.get('/api/notes1', (req, res) => {
-  res.json(dbData)
-});
 
 // GET request for texts
 app.get('/api/notes', (req, res) => {

@@ -18,5 +18,15 @@
         "title": "add new after view old",
         "text": "and save again",
         "note_id": "273c"
+    },
+    {
+        "title": "Here's a new note",
+        "text": "some more notes",
+        "note_id": "289f"
+    },
+    {
+        "title": "And ANOTHER",
+        "text": "NOOOO NOT ANOTHER!\n",
+        "note_id": "dd3f"
     }
 ]
