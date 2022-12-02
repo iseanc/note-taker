@@ -75,7 +75,6 @@ app.post('/api/notes', (req, res) => {
       } else {
         // Convert string into JSON object
         const parsedNotes = JSON.parse(data);
-        console.log(parsedNotes)
         // Add a new text
         parsedNotes.push(newNote);
 
@@ -104,83 +103,61 @@ app.post('/api/notes', (req, res) => {
 });
 
 // TODO: WORK IN PROGRESS - DELETE request to add a text
-// app.get('/api/notes/:note_id', (req, res) => {
 
-//   // Load search term to const
-//   const noteId = req.params.note_id;
-  
-//   // Obtain matching note(s)
-//   fs.readFile('./db/db.json', 'utf8', (err, data) => {
-//     if (err) {
-//       console.error(err);
-//     } else if (noteId) {
-//       // Convert string into JSON object
-//       const parsedNotes = JSON.parse(data);
-//       const nonMatchNotes = [];
+app.delete('/api/notes/:note_id', (req, res) => {
+  // Log that a POST request was received
+  console.info(`${req.method} request received to delete a note`);
 
-//       for (let i = 0; i < parsedNotes.length; i++) {
-//         if (parsedNotes[i].note_id !== noteId) {
-//           nonMatchNotes.push(parsedNotes[i]);
-//         }
-//       }
-//       console.log(nonMatchNotes);
-//       // res.json(JSON.parse(data));
-//     }
-//   });
+  // Load search term to const
+  const noteId = req.params.note_id;
 
+  // If a note_id property is present
+  if (noteId) {
 
-// });
+  // Obtain note(s) that do non match to remove the entry for deletion
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+      if (err) {
+        console.error(err);
+      } else if (noteId) {
+        // Convert string into JSON object
+        const parsedNotes = JSON.parse(data);
+        // Array to hold non-matching notes
+        const nonMatchNotes = [];
 
-// app.delete('/api/notes/:note_id', (req, res) => {
-//   // Log that a POST request was received
-//   console.info(`${req.method} request received to delete a note`);
+        // Loop through all notes
+        // parsedNotes.forEach((note) => {
+        for (let i = 0; i < parsedNotes.length; i++) {
+          if (parsedNotes[i].note_id !== noteId) {
+            // console.log(`ps${i}: `, parsedNotes[i]);
+            nonMatchNotes.push(parsedNotes[i]);
+          }
+        }
 
-//   // Destructuring assignment for the items in req.body
-//   const { title, text, note_id } = req.body;
+        fs.writeFile(
+          './db/db.json',
+          JSON.stringify(nonMatchNotes, null, 4),
+          (writeErr) =>
+            writeErr
+              ? console.error(writeErr)
+              : console.info('Successfully deleted note!')
+        );
+        // res.json(JSON.parse(data));
+      }
+    });
 
-//   // If all the required properties are present
-//   if (title && text && note_id) {
-//     // Variable for the object we will delete
-//     const deleteId = {
-//       title,
-//       text,
-//       note_id: uuid(),
-//     };
+    const response = {
+      status: 'success',
+      // body: newNote,
+    };
 
-//     // Obtain existing texts
-//     fs.readFile('./db/db.json', 'utf8', (err, data) => {
-//       if (err) {
-//         console.error(err);
-//       } else {
-//         // Convert string into JSON object
-//         const parsedNotes = JSON.parse(data);
-//         console.log(parsedNotes)
-//         // Add a new text
-//         parsedNotes.push(newNote);
+    // console.log("this is the response", response);
 
-//         // Write updated texts back to the file
-//         fs.writeFile(
-//           './db/db.json',
-//           JSON.stringify(parsedNotes, null, 4),
-//           (writeErr) =>
-//             writeErr
-//               ? console.error(writeErr)
-//               : console.info('Successfully deleted texts!')
-//         );
-//       }
-//     });
-
-//     const response = {
-//       status: 'success',
-//       body: newNote,
-//     };
-
-//     console.log(response);
-//     res.status(201).json(response);
-//   } else {
-//     res.status(500).json('Error in deleting text');
-//   }
-// });
+    res.status(201).json(response);
+  } 
+  // else {
+  //   res.status(500).json('Error in deleting text');
+  // }
+});
 
 // App listens on this port.
 app.listen(PORT, () =>
